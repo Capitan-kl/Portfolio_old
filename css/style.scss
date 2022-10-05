@@ -1,0 +1,520 @@
+@import 'fonts';
+@import 'colors';
+
+@mixin flx-block-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin flx-block-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@mixin container-size {
+    width: 100%;
+    max-width: 937px;
+    margin: 0 auto;
+}
+
+@mixin start-mod {
+    margin: 0;
+    padding: 0;
+    font-family: $font-family-main ;
+}
+
+@mixin animation-on {
+    opacity: 1;
+    transform:translateY(0);
+}
+
+@mixin animation-off {
+    opacity: 0;
+    transform:translateY(-1rem);
+    transition: all 2s ease 0s;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+    @include start-mod();
+    scroll-behavior: smooth;
+    font-size: $font-size;
+    line-height: 1.5;
+    font-weight: $font-weight;
+    color:$basic-black;
+    background-color: $basic-white;
+    max-width: 1445px;
+    width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    @include start-mod();
+}
+
+p, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: $font-family-1;
+}
+
+.page {
+margin: 0;
+padding: 0;
+font-family:$font-family-1;
+font-size: $font-size;
+line-height: 1.5;
+font-weight: $font-weight;
+color:$basic-black;
+background-color:$basic-white;
+}
+.container{
+@include container-size();
+}
+// NAV
+.menu{
+display: flex;
+flex-direction: row;
+justify-content:flex-start;
+text-transform: capitalize;
+font-family: $font-family-main;
+    &__link {
+    text-decoration: none;
+    color: $basic-neutral;
+    margin-right: 8.8rem ;
+    margin-top: 1.8rem;
+        &:hover {
+            color: $basic-black;
+        }
+        // &:hover {
+        // width: 0%;
+        // height: 3px;
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // content: '';
+        // transform: translate3d(-50%, -50%, 0);
+        // transition: width ease .3s;
+        // background: $basic-black;
+        // }
+        &:active {
+            opacity: 0.7;
+            color: $special;
+        }
+        &_active{
+        color: $basic-black;
+        text-decoration: none;
+        margin-right: 8.8rem;
+        margin-top: 1.8rem;
+        }
+        &_last {
+            margin-top: 1.8rem;
+            color: $basic-neutral;
+            text-decoration: none;
+        &:hover {
+            color: $basic-black;}
+        &:active {
+            opacity: 0.7;
+            color: $special;}
+        }
+    }
+    &__line {
+    margin-top: 4.8rem ;
+    margin-bottom: 1.97rem;
+    border-top: 2px solid $basic-neutral;
+    max-width: 937px;
+    width: 100%;
+    max-height: 0;
+    }
+    
+}
+// GAME 
+#pacman {
+width: 27px;
+height: 27px;
+background-image: url(/img/pacman-pixel.png);
+background-size: 27px 27px;
+position: relative;
+top: -29px;
+}
+#ghost {
+width: 54px;
+height: 36px;
+background-image: url(/img/packman-game.png);
+background-size: 54px 36px;
+position: relative;
+top: -65px;
+left: 897px;
+animation: ghostMov 2s infinite linear;
+}
+
+@keyframes ghostMov {
+    0% {
+    left:897px ;
+    }
+    100% {
+    left: -18px;
+    }
+}
+
+.jump {
+    animation: jump 0.5s linear;
+}
+
+@keyframes jump {
+    0% {
+    top:-1.6rem ;
+    }
+    30% {
+    top: -54px;
+    }
+    50% {
+    top: -108px;
+    }
+    80% {
+    top: -3rem;
+    }
+    100% {
+    top: -1.6rem;
+    }
+}
+.page__content {
+margin: 0;
+padding: 0;
+}
+// BASE
+.main {
+width: 100%;
+max-width: 1445px;
+margin: 0 auto;
+    &__container {
+        @include container-size();
+        animation: fade-in 2s ease;
+        & .element-animation{
+            @include animation-off();
+            & .element-show {
+                @include animation-on();
+            }
+        }
+    }
+    &__content {
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        align-items: flex-end;
+        margin-bottom: 2.5rem;
+    }
+    &__title {
+        font-size: 2.63rem;
+        font-weight: $font-weight;
+        line-height: 3.14rem;
+        overflow-wrap: break-word;
+        max-width: 16rem;
+    }
+    &__paragraf {
+        max-width: 8.6rem;
+        overflow-wrap: break-word;
+    }
+    &__language {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: nowrap;
+        max-height: 5rem;
+        height: 100%;
+        padding-bottom: 0.5rem;
+    }
+    &__photo {
+        margin-bottom: 6rem;
+    }
+}
+
+.button {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: $font-family-1;
+    font-size: 0.88rem;
+    font-weight: $font-weight;
+    
+    transform: rotate(180deg);
+    writing-mode:vertical-rl;
+    color: $basic-black-2;
+}
+
+.rus-lang {
+    color: $basic-neutral;
+}
+
+.en-lang {
+    margin-top: 1rem;
+    &::before {
+        content: '\2009 ''|' '\2009 ';
+    }
+}
+
+//button en_lang active_lang
+
+// ABOUT ME
+
+.main-block {
+    max-width: 80rem;
+    width: 100%;
+    max-height: 28rem;
+    height: 100%;
+    background-color: $basic-grey-2;
+    margin: 0 auto;
+    animation: fade-in 2s ease;
+    & .element-animation{
+        @include animation-off();
+        & .element-show {
+            @include animation-on();
+        }
+    }
+    &__content {
+        @include flx-block-col();
+    }
+    &__title {
+        font-size: 1.88rem;
+        font-weight: $font-weight;
+        line-height: 2.22rem;
+        margin-bottom: 1rem;
+        padding-top: 6.6rem;
+    }
+    &__paragraf {
+        margin-bottom: 1.5rem;
+    }
+    &__paragraf_last {
+        padding-bottom: 8.6rem;
+    }
+}
+// SKILLS
+
+.main-section {
+    @include container-size();
+    animation: fade-in 2s ease;
+    // & .element-animation{
+    //     @include animation-off();
+    //     & .element-show {
+    //         @include animation-on();
+    //     }
+    // }
+    &__content {
+        @include flx-block-col();
+    }
+    &__title {
+        font-size: 1.88rem;
+        font-weight: $font-weight;
+        line-height: 2.22rem;
+        margin-bottom: 3.5rem;
+        margin-top: 5rem;
+    }
+    &__paragraf {
+        margin-bottom: 4.4rem;
+    }
+    &__block {
+        width: 100%;
+        max-width: 52rem;
+        height: 100%;
+        max-height: 11.6rem;
+        margin-bottom: 6.2rem;
+    }
+    &__list {
+        @include flx-block-row();
+        list-style: none;
+        margin-bottom: 12.3rem;
+        color: $basic-neutral;
+        text-transform: uppercase;
+        font-size: $font-size-1;
+    }
+    &__list-block {
+        @include flx-block-col();
+        margin-right: 5rem;
+        &:last-child {
+            margin: 0;
+        }
+    }
+    &__list-block_mod {
+        @include flx-block-row();
+    }
+    
+}
+
+.el-1, .el-3, .el-5 {
+    margin-bottom: 1rem;
+}
+.el-7 {
+    margin-bottom: 1.7rem;
+}
+.el-2, .el-4, .el-6, .el-8 {
+    margin-bottom: 2.2rem ;
+}
+
+.star {
+    &::after {
+        content:"";
+        display:block;
+        background-image: url(/img/Star.svg);
+        background-repeat: no-repeat;
+        width: 1.4rem;
+        height: 1.4rem;
+        margin-right: 0.5rem;
+    }
+    &__last {
+        content:"";
+        display:block;
+        background-image: url(/img/Star-1.svg);
+        background-repeat: no-repeat;
+        width: 1.4rem;
+        height: 1.4rem;
+        margin-right: 0.5rem;
+        &:hover {
+            content:attr();
+            display:block;
+            background-image: url(/img/Star.svg);
+            background-repeat: no-repeat;
+            width: 1.4rem;
+            height: 1.4rem;
+        }
+    }
+}
+
+// PORTFOLIO
+
+.main-pro {
+    max-width: 80rem;
+    width: 100%;
+    max-height: 83rem;
+    height: 100%;
+    background-color: $basic-grey-2;
+    margin: 0 auto;
+    animation: fade-in 2s ease;
+    &__content{
+        @include flx-block-col();
+        }
+    &__title {
+        font-size: 1.88rem;
+        font-weight: $font-weight;
+        line-height: 2.22rem;
+        margin-top: 6.2rem;
+        margin-bottom: 2.6rem;
+    }
+    &__block {
+        @include flx-block-col();
+    }
+}
+
+.work-flow {
+    margin-bottom: 2.4rem;
+    &_paragraf {
+        margin-bottom: 3rem;
+        color: $basic-black;
+    }
+}
+
+// .page__footer {
+// max-width: 80rem;
+// width: 100%;
+// max-height: 34.5rem;
+// height: 100%;
+// margin: 0 auto;
+// }
+
+.footer {
+max-width: 80rem;
+width: 100%;
+max-height: 34.5rem;
+height: 100%;
+margin: 0 auto;
+animation: fade-in 2s ease;
+    &__content {
+    @include flx-block-col();
+    }
+    &__title {
+    font-size: 1.88rem;
+    font-weight: $font-weight;
+    line-height: 2.22rem;
+    margin-top: 6.2rem;
+    margin-bottom: 1.2rem;
+    }
+    &__paragraf {
+    margin-bottom: 1.6rem;
+    }
+    &__social {
+    margin-top: 4.7rem;
+    margin-bottom: 11rem;
+        &_row {
+        @include flx-block-row();
+        }
+    }
+}
+
+.telegram, .instagram, .github {
+margin-right: 3.4rem;
+}
+
+.button-contacts {
+color: $basic-white;
+background-color: $basic-black;
+text-decoration: none;
+padding: 0.5rem 2rem;
+border-radius: 1.5rem;
+}
+
+// MODAL-WINDOW
+
+.hidden {
+display: none;
+}
+
+.modal {
+    width: 100%;
+    max-width: 40rem;
+    max-height: 40rem;
+    color: $basic-black;
+    font-family: $font-family-1;
+    margin: 0 auto;
+    &__container{
+        @include flx-block-row();
+        justify-content: center
+    }
+    &__window {
+        @include flx-block-row();
+        justify-content: flex-start;
+    }
+    &__contact {
+        margin-bottom: 0.5rem;
+    }
+}                
+
+.form_email {
+    margin-left: 2rem;
+}
+
+.mod-1 {
+    margin-top: 2rem;
+    margin-left: 10rem ;
+    }
+// .custom-form
+.email {
+    margin-left: 12.3rem;
+}
+
+
